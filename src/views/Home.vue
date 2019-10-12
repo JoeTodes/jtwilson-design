@@ -1,18 +1,21 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-img :height="this.windowHeight-64" :src="src"></v-img>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      windowHeight: 0,
+      windowWidth: 0,
+      src: ``,
+      imgLoaded: false
+    };
+  },
+  mounted() {
+    this.windowHeight = window.innerHeight;
+    this.windowWidth = window.innerWidth;
+    this.src = `https://picsum.photos/${this.windowWidth}/${this.windowHeight}`;
   }
-}
+};
 </script>

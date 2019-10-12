@@ -1,31 +1,41 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <Header />
+
+    <v-content v-cloak>
+      <transition appear name="fade">
+        <router-view></router-view>
+      </transition>
+    </v-content>
+  </v-app>
 </template>
 
+<script>
+import Header from "./components/Header";
+
+export default {
+  name: "App",
+  components: {
+    Header
+  },
+  data: () => ({
+    //
+  })
+};
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
+.fade-enter-active {
+  transition: all 0.5s;
+  transition-delay: 0.5s;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.fade-leave-active {
+  transition: all 0.5s;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(-64px);
 }
 </style>
+
